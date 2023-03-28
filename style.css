@@ -11,6 +11,15 @@
     margin: 0;
     box-sizing: border-box;
     min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;   
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 
+    'header header'
+    'nav imgcontainer'
+    'footer footer';
+    row-gap: 50px;
+    column-gap: 40px;
   }
   
   .header {
@@ -19,12 +28,17 @@
     display: grid;
     align-items: center;
     justify-items: center;
+    grid-area: header;
   }
   
   .header__title {
     font-size: 3rem;
-    margin: 0;
     font-family: 'Pacifico', cursive;
+  }
+
+  .nav {
+    grid-area: nav;
+    margin: 0px 60px
   }
   
   .nav__container {
@@ -34,7 +48,7 @@
     grid-template-columns: 1fr;
     min-width: 200px;
     justify-items: center;
-    padding: 12px 0 24px;
+    padding: 12px 0 24px;    
   }
   
   .nav__link, .nav__link--active {
@@ -57,10 +71,19 @@
     padding: 0 70px;
   }
   
+.img_card__container {
+    grid-area: imgcontainer;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 350px;
+    gap: 20px 30px
+}
+
   .img_card {
     width: 300px;
     box-shadow: var(--gray) 4px 4px 10px 2px;
     border-radius: 3px;
+   
   }
   
   .img_card__img {
@@ -76,24 +99,45 @@
     display: grid;
     align-items: center;
     justify-items: center;
+    grid-area: footer;
   }
   
   @media screen and (max-width: 1100px) {
+
+    body {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr 1fr 4fr 1fr;   
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        'header'
+        'nav'
+        'imgcontainer'
+        'footer';
+    }
+
     .header__title {
       font-size: 2rem;
     }
+
     .nav__container {
       width: 80vw;
       min-width: 300px;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr); 
     }
+
     .nav__link, .nav__link--active {
       text-decoration: underline;
     }
+
     .nav__link--active {
       padding: 0;
     }
     .nav__link::after, .nav__link--active::after {
       display: none;
+    }
+
+    .img_card__container {
+        justify-items: center;
     }
   }
